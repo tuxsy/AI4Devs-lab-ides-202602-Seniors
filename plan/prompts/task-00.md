@@ -17,7 +17,7 @@ flowchart LR
 Run with `opx-explore`
 
 ```
-Vamos a emprezar a trabajar en la tarea @plan/task-00.md. Hay algunas cosas que el proyecto ya trae echas. Quiero que analices lo que falta y me crees un proposal para realizarlo
+Vamos a emprezar a trabajar en la tarea @plan/task-00.md. Hay algunas cosas que el proyecto ya trae hechas. Quiero que analices lo que falta y me crees un proposal para realizarlo
 ```
 
 ### Resultado
