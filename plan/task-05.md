@@ -1,6 +1,6 @@
 # User Interface
 
-Lee la [historia de usuario](./user-story-md) que estamos desarrollando.
+Lee la [historia de usuario](./user-story.md) que estamos desarrollando.
 
 Ten en cuenta todo lo que hemos definido en `docs/frontend-security.md` respecto a la seguridad y privacidad.
 

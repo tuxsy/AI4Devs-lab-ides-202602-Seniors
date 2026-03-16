@@ -1,6 +1,6 @@
 # Data setup + seeding
 
-Lee la [historia de usuario](./user-story-md) que estamos desarrollando.
+Lee la [historia de usuario](./user-story.md) que estamos desarrollando.
 
 Lee el modelo de datos que hemos definido en `./docs/data-model.md`
 
