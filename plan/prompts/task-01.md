@@ -175,7 +175,7 @@ Archivo el cambio y empiezo con el siguiente
 
 No promociono la spec. El cambio puede consultarse en `.openspec/changes/archive/2026-03-16-backend-security-baseline`
 
-### health-check-endpoint 
+### health-check-endpoint 
 
 Ejecuto el comando `/opsx-apply health-check-endpoint`.
 
