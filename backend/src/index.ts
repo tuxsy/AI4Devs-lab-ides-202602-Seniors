@@ -11,6 +11,7 @@ import swaggerUi from 'swagger-ui-express';
 import dotenv from 'dotenv';
 import healthRouter from './routes/health';
 import candidatesRouter from './routes/candidates';
+import autologinRouter from './routes/autologin';
 import { ApiError } from './types/errors';
 
 dotenv.config();
@@ -238,6 +239,10 @@ app.use('/health', healthRouter);
 
 // Candidates routes
 app.use('/candidates', candidatesRouter);
+
+// TODO: MVP only - remove for production auth implementation
+// Auto-login route
+app.use('/autologin', autologinRouter);
 
 // Centralized error handler — must be last middleware (4-arg signature)
 app.use((err: unknown, req: Request, res: Response, _next: NextFunction) => {

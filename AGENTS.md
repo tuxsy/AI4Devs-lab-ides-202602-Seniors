@@ -91,15 +91,39 @@ Frontend uses CRA's default ESLint (`eslint-config-react-app`). No dedicated con
 - Frontend uses `"module": "esnext"` with `"noEmit": true` (CRA handles bundling).
 - Target is `es5` in both packages.
 
-### Formatting (Prettier — backend)
+### Formatting (Prettier)
 
 ```json
-{ "singleQuote": true, "trailingComma": "all" }
+{ "singleQuote": true, "trailingComma": "all", "printWidth": 80 }
 ```
 
 - **Single quotes** for all strings.
 - **Trailing commas** on all multi-line function parameters, arrays, and objects.
-- Enforce via `eslint-plugin-prettier` (backend `.eslintrc.js` extends `plugin:prettier/recommended`).
+- **Line length**: Keep lines under 80 characters. Split long lines.
+- Backend: Enforced via `eslint-plugin-prettier` (`.eslintrc.js` extends `plugin:prettier/recommended`).
+- Frontend: CRA integrates ESLint + Prettier. **Build fails on prettier violations**.
+
+**IMPORTANT**: When writing long type definitions or function signatures, split them across multiple lines:
+
+```typescript
+// BAD - line too long, will fail build
+const colors: Record<Status, 'default' | 'primary' | 'success' | 'error'> = {
+
+// GOOD - split across lines
+const colors: Record<
+  Status,
+  'default' | 'primary' | 'success' | 'error'
+> = {
+
+// BAD - parameters on single line
+private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
+
+// GOOD - parameters on separate lines
+private async request<T>(
+  endpoint: string,
+  options?: RequestInit,
+): Promise<T> {
+```
 
 ### Imports
 
