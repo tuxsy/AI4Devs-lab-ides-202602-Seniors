@@ -69,7 +69,7 @@ De momento la audiencia serán desarrolladores, tanto humanos como IA. Debe ser 
 
 *Respuesta*
 
-Adepto el directorio uploads/. 
+Acepto el directorio uploads/. 
 
 #### Sobre el tono — Para AI agents como audiencia, 
 
