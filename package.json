@@ -1,0 +1,22 @@
+{
+  "name": "ai4devs-ats",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0"
+  },
+  "lint-staged": {
+    "backend/src/**/*.{ts,js}": [
+      "backend/node_modules/.bin/prettier --write",
+      "backend/node_modules/.bin/eslint --config backend/eslint.config.js --fix"
+    ],
+    "frontend/src/**/*.{ts,tsx,js,jsx}": [
+      "frontend/node_modules/.bin/prettier --write",
+      "frontend/node_modules/.bin/eslint --fix"
+    ]
+  }
+}
