@@ -1,4 +1,4 @@
-# Task 01 - Security and Priacy
+# Task 01 - Security and Privacy
 
 ## SDD Workflow
 
