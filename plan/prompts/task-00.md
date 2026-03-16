@@ -28,7 +28,7 @@ Una vez analizados los artefactos creados por OpenSpec, parece que todo es corre
 
 La implemlementación ha sido correcta, hemos configurado correctamente todo lo que se le solicitaba y además hemos coregido los probleams de formateo y linting
 
-## Archivado
+## Archivado
 
 Al archivar hemos optado por no promociona la spec, ya que esto es una tarea inicial de setup, no obstante el cambio realizado se puede 
-consultar en `./openspec/changes/archive/2026-03-16-setup-linting-formatting`
+consultar en `.openspec/changes/archive/2026-03-16-setup-linting-formatting`

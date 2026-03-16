@@ -43,6 +43,10 @@ module.exports = [
       'prefer-spread': 'error',
       // TypeScript recommended rules
       ...tsPlugin.configs['recommended'].rules,
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
   },
   prettierRecommended,
