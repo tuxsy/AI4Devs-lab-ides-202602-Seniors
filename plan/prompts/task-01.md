@@ -83,7 +83,7 @@ Prefiero reglas explícitas.
 
 El agente ha escrito correctamente los dos documentos solicitados.
 
-No obstante leer los [requisitos para el backend](../../docs/backend-security.md) parece ser que hay algunas tareas genéricas que habría de configuración que habría que hacer.
+No obstante leer los [requisitos para el backend](../../docs/backend-security.md) parece ser que hay algunas tareas genéricas que de configuración que habría que hacer.
 
 Iniciamos un segundo ciclo de iteración para realizar dichas tareas.
 
