@@ -1,0 +1,11 @@
+.add-candidate-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+@media (max-width: 600px) {
+  .add-candidate-container {
+    padding: 16px;
+  }
+}

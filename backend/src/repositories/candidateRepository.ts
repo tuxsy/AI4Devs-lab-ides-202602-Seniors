@@ -5,10 +5,13 @@ import { CandidateStatus } from '@prisma/client';
 
 export const candidateRepository = {
   async findAll(query: PaginationQuery) {
-    const { page, limit, status } = query;
+    const { page, limit, status, userId } = query;
     const skip = (page - 1) * limit;
 
-    const where = status ? { status } : {};
+    const where = {
+      userId,
+      ...(status && { status }),
+    };
 
     const [candidates, total] = await Promise.all([
       prisma.candidate.findMany({

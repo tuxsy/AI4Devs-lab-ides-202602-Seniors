@@ -21,10 +21,17 @@ const router = Router();
  * /candidates:
  *   get:
  *     summary: List candidates
- *     description: Returns a paginated list of candidates with optional status filter.
+ *     description: Returns a paginated list of candidates for the specified recruiter.
  *     tags:
  *       - Candidates
  *     parameters:
+ *       - in: query
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Recruiter UUID (required) - filters candidates by owner
  *       - in: query
  *         name: page
  *         schema:

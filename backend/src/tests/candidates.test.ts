@@ -63,11 +63,18 @@ beforeEach(() => {
 // GET /candidates
 // ---------------------------------------------------------------------------
 describe('GET /candidates', () => {
-  it('returns 200 with paginated list', async () => {
+  it('returns 400 when userId is missing', async () => {
+    const res = await request(app).get('/candidates');
+
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe('BadRequest');
+  });
+
+  it('returns 200 with paginated list when userId is provided', async () => {
     mockFindMany.mockResolvedValue([candidateSummary]);
     mockCount.mockResolvedValue(1);
 
-    const res = await request(app).get('/candidates');
+    const res = await request(app).get(`/candidates?userId=${validUserId}`);
 
     expect(res.status).toBe(200);
     expect(res.body.data).toHaveLength(1);
@@ -79,35 +86,67 @@ describe('GET /candidates', () => {
     });
   });
 
+  it('filters candidates by userId', async () => {
+    mockFindMany.mockResolvedValue([candidateSummary]);
+    mockCount.mockResolvedValue(1);
+
+    const res = await request(app).get(`/candidates?userId=${validUserId}`);
+
+    expect(res.status).toBe(200);
+    expect(mockFindMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({ userId: validUserId }),
+      }),
+    );
+  });
+
   it('respects page and limit query params', async () => {
     mockFindMany.mockResolvedValue([]);
     mockCount.mockResolvedValue(0);
 
-    const res = await request(app).get('/candidates?page=2&limit=5');
+    const res = await request(app).get(
+      `/candidates?userId=${validUserId}&page=2&limit=5`,
+    );
 
     expect(res.status).toBe(200);
     expect(res.body.pagination).toMatchObject({ page: 2, limit: 5 });
   });
 
-  it('filters by status', async () => {
+  it('filters by status and userId', async () => {
     mockFindMany.mockResolvedValue([candidateSummary]);
     mockCount.mockResolvedValue(1);
 
-    const res = await request(app).get('/candidates?status=ACTIVE');
+    const res = await request(app).get(
+      `/candidates?userId=${validUserId}&status=ACTIVE`,
+    );
 
     expect(res.status).toBe(200);
     expect(mockFindMany).toHaveBeenCalledWith(
-      expect.objectContaining({ where: { status: 'ACTIVE' } }),
+      expect.objectContaining({
+        where: expect.objectContaining({
+          userId: validUserId,
+          status: 'ACTIVE',
+        }),
+      }),
     );
   });
 
   it('returns 400 for invalid status', async () => {
-    const res = await request(app).get('/candidates?status=INVALID');
+    const res = await request(app).get(
+      `/candidates?userId=${validUserId}&status=INVALID`,
+    );
     expect(res.status).toBe(400);
   });
 
   it('returns 400 for non-integer page', async () => {
-    const res = await request(app).get('/candidates?page=abc');
+    const res = await request(app).get(
+      `/candidates?userId=${validUserId}&page=abc`,
+    );
+    expect(res.status).toBe(400);
+  });
+
+  it('returns 400 for invalid userId format', async () => {
+    const res = await request(app).get('/candidates?userId=not-a-uuid');
     expect(res.status).toBe(400);
   });
 });
