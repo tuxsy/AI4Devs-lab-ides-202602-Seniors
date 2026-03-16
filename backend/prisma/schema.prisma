@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,8 +10,76 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum CandidateStatus {
+  ACTIVE
+  IN_PROCESS
+  HIRED
+  REJECTED
+  WITHDRAWN
+}
+
+enum DocumentType {
+  CV
+  COVER_LETTER
+  OTHER
+}
+
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id         String      @id @default(uuid())
+  email      String      @unique
+  name       String?
+  candidates Candidate[]
+}
+
+model Candidate {
+  id              String           @id @default(uuid())
+  userId          String
+  firstName       String
+  lastName        String
+  email           String           @unique
+  phone           String?
+  address         String?
+  status          CandidateStatus
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  user            User             @relation(fields: [userId], references: [id])
+  education       Education[]
+  workExperiences WorkExperience[]
+  documents       Document[]
+}
+
+model Education {
+  id           String    @id @default(uuid())
+  candidateId  String
+  institution  String
+  degree       String
+  fieldOfStudy String?
+  startDate    DateTime
+  endDate      DateTime?
+  createdAt    DateTime  @default(now())
+  candidate    Candidate @relation(fields: [candidateId], references: [id])
+}
+
+model WorkExperience {
+  id          String    @id @default(uuid())
+  candidateId String
+  company     String
+  position    String
+  startDate   DateTime
+  endDate     DateTime?
+  description String?
+  createdAt   DateTime  @default(now())
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+}
+
+model Document {
+  id          String       @id @default(uuid())
+  candidateId String
+  fileUri     String
+  fileName    String
+  mimeType    String
+  size        Int
+  type        DocumentType
+  uploadedAt  DateTime     @default(now())
+  candidate   Candidate    @relation(fields: [candidateId], references: [id])
 }
