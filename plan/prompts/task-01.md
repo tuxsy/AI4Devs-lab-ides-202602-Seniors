@@ -167,7 +167,7 @@ Durante la implementación el agente se ha dado cuenta que había un test roto e
 
 El resultado parece correcto, vamos a esperarnos a tener el endpoint dummy y veremos si todo va bien.
 
-Archivo el cambio y empeiezo con el siguiente
+Archivo el cambio y empiezo con el siguiente
 
 ```
 /opx-archive backend-security-baseline
